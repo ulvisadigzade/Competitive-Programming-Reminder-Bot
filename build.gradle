@@ -24,13 +24,25 @@ repositories {
 }
 
 dependencies {
+	//spring
 	implementation 'org.springframework.boot:spring-boot-starter'
-	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'org.postgresql:postgresql'
-	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	//lombok
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	//postgres
+	runtimeOnly 'org.postgresql:postgresql'
+
+	//telegram
+	implementation 'org.telegram:telegrambots-springboot-longpolling-starter:8.3.0'
+	implementation 'org.telegram:telegrambots-client:8.3.0'
+	//implementation 'org.telegram:telegrambots-longpolling:8.3.0'
+	//implementation 'org.telegram:telegrambots-client:8.3.0'
+	//implementation 'org.telegram:telegrambots-spring-boot-starter:6.7.0'
 }
 
 tasks.named('test') {

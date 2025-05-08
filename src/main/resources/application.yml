@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: cpreminder
+
+
+telegrambots:
+  enabled: true
+  bots:
+    - username: ${BOT_USERNAME}
+      token: ${BOT_TOKEN}
+
+
+
+
