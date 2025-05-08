@@ -27,11 +27,9 @@ public class MessageService {
             messageSender.sendMessage(update,"start");
         }
         else if(textMessage.equals("/solved")){
-
             messageSender.sendMessage(update,"solved");
         }
         else if(textMessage.equals("/random_problem")){
-
             messageSender.sendMessage(update,"random_problem");
         }
         else if(textMessage.equals("/help")){

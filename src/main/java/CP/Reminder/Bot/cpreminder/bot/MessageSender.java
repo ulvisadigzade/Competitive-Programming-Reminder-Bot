@@ -44,12 +44,31 @@ public class MessageSender {
 
         messages.put(
                 "invalid_command",
-                "https://youtube.com"
-                //"Command not found."
+                "Command not found."
+        );
+
+        messages.put(
+                "help",
+                "\uD83E\uDD16 Bot Help Menu\n" +
+                        "\n" +
+                        "Welcome! Here are the available commands you can use:\n" +
+                        "\n" +
+                        "/start – Initialize the bot and start interacting.\n" +
+                        "\n" +
+                        "/solved – Log a problem you've solved.\n" +
+                        "After sending the command, please enter the following on separate lines:\n" +
+                        "\n" +
+                        "Problem Name  \n" +
+                        "Problem URL  \n" +
+                        "Interval in days (when you'd like to review it again)\n" +
+                        "\n" +
+                        "/random_problem – Get a random problem from your solved list for practice or review.\n" +
+                        "\n" +
+                        "If you have any questions or issues, feel free to reach out!"
         );
 
         // TODO
-        // help, random_problem
+        //random_problem
 
     }
 
