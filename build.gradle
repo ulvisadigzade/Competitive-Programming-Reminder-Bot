@@ -34,15 +34,15 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 
-	//postgres
+	//database
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	runtimeOnly 'org.postgresql:postgresql'
 
 	//telegram
 	implementation 'org.telegram:telegrambots-springboot-longpolling-starter:8.3.0'
 	implementation 'org.telegram:telegrambots-client:8.3.0'
-	//implementation 'org.telegram:telegrambots-longpolling:8.3.0'
-	//implementation 'org.telegram:telegrambots-client:8.3.0'
-	//implementation 'org.telegram:telegrambots-spring-boot-starter:6.7.0'
+
+
 }
 
 tasks.named('test') {

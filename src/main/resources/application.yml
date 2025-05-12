@@ -3,6 +3,13 @@ spring:
     name: cpreminder
 
 
+  datasource:
+    url: jdbc:postgresql://localhost:5432/CPReminderBot
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+
 telegrambots:
   enabled: true
   bots:

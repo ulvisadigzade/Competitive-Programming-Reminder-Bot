@@ -67,16 +67,40 @@ public class MessageSender {
                         "If you have any questions or issues, feel free to reach out!"
         );
 
+        messages.put(
+                "ask_name",
+                "Enter problem name!"
+        );
+        messages.put(
+                "ask_url",
+                "Enter problem url!"
+        );
+        messages.put(
+                "ask_interval",
+                "Enter interval in minutes!"
+        );
         // TODO
         //random_problem
 
     }
 
     public void sendMessage(Update update,String option){
-
         SendMessage message = new SendMessage(
                 String.valueOf(update.getMessage().getChatId()),
                 messages.get(option)
+        );
+
+        try{
+            telegramClient.execute(message);
+        }catch (TelegramApiException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void sendText(Update update,String messageText){
+        SendMessage message = new SendMessage(
+                String.valueOf(update.getMessage().getChatId()),
+                messageText
         );
 
         try{
