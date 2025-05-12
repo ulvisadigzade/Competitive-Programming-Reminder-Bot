@@ -79,6 +79,21 @@ public class MessageSender {
                 "ask_interval",
                 "Enter interval in minutes!"
         );
+
+        messages.put(
+                "invalid_name",
+                "Entered name is invalid, try again."
+        );
+
+        messages.put(
+                "invalid_url",
+                "Entered url is invalid, try again."
+        );
+
+        messages.put(
+                "invalid_interval",
+                "Entered interval is invalid, it must be a number and be in range [1440,219000]"
+        );
         // TODO
         //random_problem
 
