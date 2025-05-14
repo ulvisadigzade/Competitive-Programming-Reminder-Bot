@@ -13,7 +13,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 @Service
 @RequiredArgsConstructor
-public class UserStateHandler {
+public class UserStateHandlerService {
     private final InputHandler inputHandler;
     private final FsmService fsmService;
     private final MessageSender messageSender;

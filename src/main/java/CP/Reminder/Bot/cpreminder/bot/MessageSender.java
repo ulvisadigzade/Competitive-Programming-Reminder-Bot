@@ -38,8 +38,8 @@ public class MessageSender {
         );
 
         messages.put(
-                "invalid_data",
-                "Invalid input, write text please."
+                "invalid_message",
+                "The message is not valid, you can send only text!"
         );
 
         messages.put(
