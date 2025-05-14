@@ -7,8 +7,8 @@ import java.net.URL;
 
 @Component
 public class InputHandler {
-    private final int MIN_INTERVAL = 1440;
-    private final int MAX_INTERVAL = 219000;
+    private final int MIN_INTERVAL = 7;
+    private final int MAX_INTERVAL = 210;
 
     public boolean checkName(String name){
         return (name!=null && !name.isEmpty());

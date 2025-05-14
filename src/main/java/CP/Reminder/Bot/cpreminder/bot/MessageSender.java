@@ -75,7 +75,7 @@ public class MessageSender {
         );
         messages.put(
                 "ask_interval",
-                "Enter interval in minutes!"
+                "Enter interval in days!"
         );
 
         messages.put(
@@ -90,7 +90,7 @@ public class MessageSender {
 
         messages.put(
                 "invalid_interval",
-                "Entered interval is invalid, it must be a number and be in range [1440,219000]"
+                "Entered interval is invalid, it must be a number and be in range [7,210]"
         );
     }
 
