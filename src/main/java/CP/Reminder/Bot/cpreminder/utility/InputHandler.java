@@ -4,7 +4,7 @@ package CP.Reminder.Bot.cpreminder.utility;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import java.net.URL;
+import java.net.URI;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,8 +19,8 @@ public class InputHandler {
 
     public boolean checkUrl(String url){
         try {
-            new URL(url).toURI();
-            return true;
+            URI uri = URI.create(url);
+            return uri.getScheme() != null && uri.getHost() != null;
         } catch (Exception e) {
             return false;
         }
