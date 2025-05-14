@@ -1,7 +1,7 @@
 package CP.Reminder.Bot.cpreminder.repository;
 
 
-import CP.Reminder.Bot.cpreminder.entity.Message;
+import CP.Reminder.Bot.cpreminder.model.Message;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

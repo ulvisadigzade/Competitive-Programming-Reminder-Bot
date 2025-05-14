@@ -62,8 +62,6 @@ public class MessageSender {
                         "Problem URL  \n" +
                         "Interval in days (when you'd like to review it again)\n" +
                         "\n" +
-                        "/random_problem – Get a random problem from your solved list for practice or review.\n" +
-                        "\n" +
                         "If you have any questions or issues, feel free to reach out!"
         );
 
@@ -94,28 +92,12 @@ public class MessageSender {
                 "invalid_interval",
                 "Entered interval is invalid, it must be a number and be in range [1440,219000]"
         );
-        // TODO
-        //random_problem
-
     }
 
     public void sendMessage(Update update,String option){
         SendMessage message = new SendMessage(
                 String.valueOf(update.getMessage().getChatId()),
                 messages.get(option)
-        );
-
-        try{
-            telegramClient.execute(message);
-        }catch (TelegramApiException e){
-            e.printStackTrace();
-        }
-    }
-
-    public void sendText(Update update,String messageText){
-        SendMessage message = new SendMessage(
-                String.valueOf(update.getMessage().getChatId()),
-                messageText
         );
 
         try{

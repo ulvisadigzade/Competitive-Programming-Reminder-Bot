@@ -1,4 +1,4 @@
-package CP.Reminder.Bot.cpreminder.entity;
+package CP.Reminder.Bot.cpreminder.model;
 
 public enum UserState {
     START,

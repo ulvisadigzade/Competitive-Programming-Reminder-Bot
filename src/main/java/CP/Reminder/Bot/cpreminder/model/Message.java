@@ -1,4 +1,4 @@
-package CP.Reminder.Bot.cpreminder.entity;
+package CP.Reminder.Bot.cpreminder.model;
 
 
 import lombok.AllArgsConstructor;
