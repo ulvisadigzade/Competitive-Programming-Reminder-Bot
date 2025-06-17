@@ -50,7 +50,6 @@ public class UserStateHandlerService {
             fsmService.sessions.get(chatId).setInterval(Integer.valueOf(textMessage));
             fsmService.sessions.get(chatId).setUserState(UserState.START);
             UserSession userSession = fsmService.sessions.get(chatId);
-            System.out.println(chatId);
             Message message = Message.builder()
                     .userId(chatId)
                     .name(userSession.getName())

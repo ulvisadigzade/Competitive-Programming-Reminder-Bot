@@ -27,7 +27,6 @@ public class ReminderService{
 
         for(Message message : messages){
             if(shouldNotify(message,now)){
-                System.out.println(message.getUserId());
                 messageSender.sendMessage(messageFormat(message),message.getUserId());
                 messageRepository.updateLastNotified(message.getId(), now);
             }

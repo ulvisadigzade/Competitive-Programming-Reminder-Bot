@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 @Component
 public class InputHandler {
-    private final int MIN_INTERVAL = 7;
+    private final int MIN_INTERVAL = 0;
     private final int MAX_INTERVAL = 210;
 
     public boolean checkName(String name){
