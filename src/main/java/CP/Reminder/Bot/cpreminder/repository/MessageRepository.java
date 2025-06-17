@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.Timestamp;
 import java.time.ZonedDateTime;
+import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
@@ -24,6 +25,20 @@ public class MessageRepository {
                 message.getIntervalDays(),
                 toTimestamp(message.getSentAt()),
                 toTimestamp(message.getLastNotified())
+        );
+    }
+
+    public List<Message> findAll() {
+        String sql = "SELECT * FROM messages";
+
+        return jdbcTemplate.query(sql, (rs, rowNum) -> Message.builder()
+                .id(rs.getLong("id"))
+                .name(rs.getString("name"))
+                .url(rs.getString("url"))
+                .intervalDays(rs.getInt("interval_days"))
+                .sentAt(rs.getObject("sent_at", ZonedDateTime.class))
+                .lastNotified(rs.getObject("last_notified", ZonedDateTime.class))
+                .build()
         );
     }
 
