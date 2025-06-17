@@ -31,10 +31,10 @@ public class CommandHandlerService {
     }
 
     public void handleSolved(Update update){
-        Long userId = update.getMessage().getFrom().getId();
+        Long chatId = update.getMessage().getChatId();
         long date = update.getMessage().getDate();
 
-        sessions.put(userId,new UserSession(UserState.ASK_NAME,date));//fix usersession
+        sessions.put(chatId,new UserSession(UserState.ASK_NAME,date,chatId));
         messageSender.sendMessage(update,"ask_name");
     }
 

@@ -15,16 +15,19 @@ public class UserSession {
     private String url;
     private int interval;
     private long date;
+    private long chatId;
 
-    public UserSession(UserState userState,long date){
+    public UserSession(UserState userState,long date,long chatId){
         this.userState=userState;
         this.name=null;
         this.url=null;
         this.interval=0;
         this.date=date;
+        this.chatId=chatId;
     }
 
-    public UserSession(long date){
+    public UserSession(long date,long chatId){
         this.date=date;
+        this.chatId=chatId;
     }
 }

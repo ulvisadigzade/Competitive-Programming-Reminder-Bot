@@ -45,13 +45,14 @@ public class UserStateHandlerService {
         }
     }
 
-    public void handleAskInterval(String textMessage, Long userId, Update update){
+    public void handleAskInterval(String textMessage, Long chatId, Update update){
         if(inputHandler.checkInterval(textMessage)){
-            fsmService.sessions.get(userId).setInterval(Integer.valueOf(textMessage));
-            fsmService.sessions.get(userId).setUserState(UserState.START);
-            UserSession userSession = fsmService.sessions.get(userId);
-
+            fsmService.sessions.get(chatId).setInterval(Integer.valueOf(textMessage));
+            fsmService.sessions.get(chatId).setUserState(UserState.START);
+            UserSession userSession = fsmService.sessions.get(chatId);
+            System.out.println(chatId);
             Message message = Message.builder()
+                    .userId(chatId)
                     .name(userSession.getName())
                     .url(userSession.getUrl())
                     .intervalDays(userSession.getInterval())

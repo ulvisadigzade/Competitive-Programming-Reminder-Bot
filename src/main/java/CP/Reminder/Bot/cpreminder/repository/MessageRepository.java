@@ -1,12 +1,12 @@
 package CP.Reminder.Bot.cpreminder.repository;
 
-
 import CP.Reminder.Bot.cpreminder.model.Message;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Timestamp;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
 
@@ -14,12 +14,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MessageRepository {
     private final JdbcTemplate jdbcTemplate;
-    private static  final String TABLE_NAME = "messages";
+    private static final String TABLE_NAME = "messages";
+    private static final ZoneId DEFAULT_ZONE = ZoneId.of("UTC");
 
-
-    public int save(Message message){
-        String sql = "INSERT INTO " + TABLE_NAME + " (name,url,interval_days,sent_at,last_notified) VALUES (?, ?, ?, ?, ?)";
+    public int save(Message message) {
+        String sql = "INSERT INTO " + TABLE_NAME + " (user_id, name, url, interval_days, sent_at, last_notified) VALUES (?, ?, ?, ?, ?, ?)";
         return jdbcTemplate.update(sql,
+                message.getUserId(),
                 message.getName(),
                 message.getUrl(),
                 message.getIntervalDays(),
@@ -33,17 +34,26 @@ public class MessageRepository {
 
         return jdbcTemplate.query(sql, (rs, rowNum) -> Message.builder()
                 .id(rs.getLong("id"))
+                .userId(rs.getLong("user_id"))
                 .name(rs.getString("name"))
                 .url(rs.getString("url"))
                 .intervalDays(rs.getInt("interval_days"))
-                .sentAt(rs.getObject("sent_at", ZonedDateTime.class))
-                .lastNotified(rs.getObject("last_notified", ZonedDateTime.class))
+                .sentAt(toZonedDateTime(rs.getTimestamp("sent_at")))
+                .lastNotified(toZonedDateTime(rs.getTimestamp("last_notified")))
                 .build()
         );
+    }
+
+    public void updateLastNotified(long id, ZonedDateTime time) {
+        String sql = "UPDATE messages SET last_notified = ? WHERE id = ?";
+        jdbcTemplate.update(sql, toTimestamp(time), id);
     }
 
     private Timestamp toTimestamp(ZonedDateTime zonedDateTime) {
         return zonedDateTime == null ? null : Timestamp.from(zonedDateTime.toInstant());
     }
 
+    private ZonedDateTime toZonedDateTime(Timestamp timestamp) {
+        return timestamp == null ? null : timestamp.toInstant().atZone(DEFAULT_ZONE);
+    }
 }

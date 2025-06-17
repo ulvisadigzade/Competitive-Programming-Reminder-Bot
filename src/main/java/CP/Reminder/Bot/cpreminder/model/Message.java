@@ -14,6 +14,7 @@ import java.time.ZonedDateTime;
 @Builder
 public class Message {
     private long id;
+    private long userId;
     private String name;
     private String url;
     private int intervalDays;

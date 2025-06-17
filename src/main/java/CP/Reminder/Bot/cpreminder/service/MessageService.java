@@ -28,13 +28,13 @@ public class MessageService {
         }
 
         String textMessage = update.getMessage().getText();
-        Long userId = update.getMessage().getFrom().getId();
+        Long chatId = update.getMessage().getChatId();
         long date = update.getMessage().getDate();
 
         Map<Long,UserSession> sessions = fsmService.sessions;
 
-        if(!sessions.containsKey(userId)){
-            sessions.put(userId,new UserSession(date));
+        if(!sessions.containsKey(chatId)){
+            sessions.put(chatId,new UserSession(date,chatId));
         }
 
 
@@ -48,11 +48,11 @@ public class MessageService {
             commandHandlerService.handleHelp(update);
         }
         else{
-            switch (sessions.get(userId).getUserState()){
+            switch (sessions.get(chatId).getUserState()){
                 case START -> messageSender.sendMessage(update,"invalid_command");
-                case ASK_NAME -> userStateHandler.handleAskName(textMessage,userId,update);
-                case ASK_URL -> userStateHandler.handleAskUrl(textMessage,userId,update);
-                case ASK_INTERVAL -> userStateHandler.handleAskInterval(textMessage,userId,update);
+                case ASK_NAME -> userStateHandler.handleAskName(textMessage,chatId,update);
+                case ASK_URL -> userStateHandler.handleAskUrl(textMessage,chatId,update);
+                case ASK_INTERVAL -> userStateHandler.handleAskInterval(textMessage,chatId,update);
             }
         }
     }

@@ -27,7 +27,9 @@ public class ReminderService{
 
         for(Message message : messages){
             if(shouldNotify(message,now)){
-                //messageSender.sendMessage(messageFormat());
+                System.out.println(message.getUserId());
+                messageSender.sendMessage(messageFormat(message),message.getUserId());
+                messageRepository.updateLastNotified(message.getId(), now);
             }
         }
     }
@@ -39,7 +41,8 @@ public class ReminderService{
         return !today.isBefore(lastDate.plusDays(message.getIntervalDays()));
     }
 
-    private String messageFormat(){
-        return "";
+    private String messageFormat(Message message){
+        return "Hey, don't forget to solve " + message.getName() + "!"
+                + "\n" + "Problem link: " + message.getUrl();
     }
 }

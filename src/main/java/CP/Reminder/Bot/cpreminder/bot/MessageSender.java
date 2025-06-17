@@ -94,6 +94,7 @@ public class MessageSender {
         );
     }
 
+    //send by option
     public void sendMessage(Update update,String option){
         SendMessage message = new SendMessage(
                 String.valueOf(update.getMessage().getChatId()),
@@ -103,6 +104,16 @@ public class MessageSender {
         try{
             telegramClient.execute(message);
         }catch (TelegramApiException e){
+            e.printStackTrace();
+        }
+    }
+
+    //send by text
+    public void sendMessage(String message, Long userId) {
+        try {
+            SendMessage sendMessage = new SendMessage(userId.toString(), message);
+            telegramClient.execute(sendMessage);
+        } catch (TelegramApiException e) {
             e.printStackTrace();
         }
     }
