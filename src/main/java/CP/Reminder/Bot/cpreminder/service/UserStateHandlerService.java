@@ -52,7 +52,9 @@ public class UserStateHandlerService {
             Message message = Message.builder()
                     .name(userSession.getName())
                     .url(userSession.getUrl())
-                    .interval_minutes(userSession.getInterval())
+                    .intervalDays(userSession.getInterval())
+                    .sentAt()
+                    .lastNotified()
                     .build();
 
             messageSender.sendMessage(update,"solved");
