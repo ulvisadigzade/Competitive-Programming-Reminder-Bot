@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.ZonedDateTime;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,5 +16,7 @@ public class Message {
     private long id;
     private String name;
     private String url;
-    private int interval_minutes;//days
+    private int intervalDays;
+    private ZonedDateTime sentAt;
+    private ZonedDateTime lastNotified;
 }

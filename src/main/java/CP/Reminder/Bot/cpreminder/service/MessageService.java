@@ -21,10 +21,6 @@ public class MessageService {
     private final InputHandler inputHandler;
 
 
-    // TODO
-    //Handle emojis
-
-
     public void handleMessage(Update update){
         if(!inputHandler.isValidMessage(update)){
             messageSender.sendMessage(update,"invalid_message");
