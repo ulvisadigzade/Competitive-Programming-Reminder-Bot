@@ -14,11 +14,17 @@ public class UserSession {
     private String name;
     private String url;
     private int interval;
+    private long date;
 
-    public UserSession(UserState userState){
+    public UserSession(UserState userState,long date){
         this.userState=userState;
         this.name=null;
-        this.url=url;
+        this.url=null;
         this.interval=0;
+        this.date=date;
+    }
+
+    public UserSession(long date){
+        this.date=date;
     }
 }

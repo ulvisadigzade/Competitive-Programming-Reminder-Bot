@@ -6,6 +6,10 @@ import java.time.ZonedDateTime;
 
 public class DateTimeUtils {
     public static ZonedDateTime toUTC(long telegramDate){
-        return Instant.ofEpochSecond(telegramDate).atZone(ZoneOffset.UTC);
+        if (telegramDate > 1000000000000L) {
+            return Instant.ofEpochMilli(telegramDate).atZone(ZoneOffset.UTC);
+        } else {
+            return Instant.ofEpochSecond(telegramDate).atZone(ZoneOffset.UTC);
+        }
     }
 }

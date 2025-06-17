@@ -6,6 +6,7 @@ import CP.Reminder.Bot.cpreminder.model.Message;
 import CP.Reminder.Bot.cpreminder.model.UserSession;
 import CP.Reminder.Bot.cpreminder.model.UserState;
 import CP.Reminder.Bot.cpreminder.repository.MessageRepository;
+import CP.Reminder.Bot.cpreminder.utility.DateTimeUtils;
 import CP.Reminder.Bot.cpreminder.utility.InputHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -49,14 +50,14 @@ public class UserStateHandlerService {
             fsmService.sessions.get(userId).setInterval(Integer.valueOf(textMessage));
             fsmService.sessions.get(userId).setUserState(UserState.START);
             UserSession userSession = fsmService.sessions.get(userId);
+
             Message message = Message.builder()
                     .name(userSession.getName())
                     .url(userSession.getUrl())
                     .intervalDays(userSession.getInterval())
-                    .sentAt()
-                    .lastNotified()
+                    .sentAt(DateTimeUtils.toUTC(userSession.getDate()))
+                    .lastNotified(DateTimeUtils.toUTC(userSession.getDate()))
                     .build();
-
             messageSender.sendMessage(update,"solved");
             messageRepository.save(message);
         }

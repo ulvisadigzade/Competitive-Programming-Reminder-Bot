@@ -29,11 +29,12 @@ public class MessageService {
 
         String textMessage = update.getMessage().getText();
         Long userId = update.getMessage().getFrom().getId();
+        long date = update.getMessage().getDate();
 
         Map<Long,UserSession> sessions = fsmService.sessions;
 
         if(!sessions.containsKey(userId)){
-            sessions.put(userId,new UserSession());
+            sessions.put(userId,new UserSession(date));
         }
 
 

@@ -32,8 +32,9 @@ public class CommandHandlerService {
 
     public void handleSolved(Update update){
         Long userId = update.getMessage().getFrom().getId();
+        long date = update.getMessage().getDate();
 
-        sessions.put(userId,new UserSession(UserState.ASK_NAME));
+        sessions.put(userId,new UserSession(UserState.ASK_NAME,date));//fix usersession
         messageSender.sendMessage(update,"ask_name");
     }
 
